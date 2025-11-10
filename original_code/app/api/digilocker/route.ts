@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
       note: "To enable: Register your app at https://digitallocker.gov.in/ and add API credentials",
     })
   } catch (error) {
-    console.error("[v0] DigiLocker error:", error)
+    console.error("[AI-form-filler] DigiLocker error:", error)
     return NextResponse.json({ error: "DigiLocker fetch failed" }, { status: 500 })
   }
 }

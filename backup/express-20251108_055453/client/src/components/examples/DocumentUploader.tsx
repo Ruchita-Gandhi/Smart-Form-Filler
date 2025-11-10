@@ -1,13 +1,3 @@
-import DocumentUploader from '../DocumentUploader';
-
-export default function DocumentUploaderExample() {
-  return (
-    <div className="p-6 max-w-2xl mx-auto">
-      <DocumentUploader
-        label="Upload Photo ID"
-        documentType="photo-id"
-        onFilesChange={(files) => console.log('Files changed:', files)}
-      />
-    </div>
-  );
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:790c14d031610c5eb528bc8c027962d79225a33720d581662d3d08556f0bc9ae
+size 347

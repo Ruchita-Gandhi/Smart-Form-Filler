@@ -66,11 +66,11 @@ export async function POST(request: NextRequest) {
         source: "digilocker",
       })
     } catch (digiLockerError) {
-      console.error("[v0] DigiLocker API error:", digiLockerError)
+      console.error("[AI-form-filler] DigiLocker API error:", digiLockerError)
       return NextResponse.json({ error: "Failed to fetch from DigiLocker API" }, { status: 500 })
     }
   } catch (error) {
-    console.error("[v0] DigiLocker fetch error:", error)
+    console.error("[AI-form-filler] DigiLocker fetch error:", error)
     return NextResponse.json(
       {
         error: "Failed to fetch from DigiLocker",

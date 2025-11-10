@@ -83,7 +83,7 @@ export default function UploadDocumentsPage() {
   }
 
   const handleDigiLockerImport = (data: Record<string, string>) => {
-    console.log("[v0] DigiLocker data imported:", data)
+    console.log("[AI-form-filler] DigiLocker data imported:", data)
     // Pre-fill would happen here
   }
 
@@ -141,12 +141,12 @@ export default function UploadDocumentsPage() {
               extractedText: ocrData.extractedText,
               documentType: doc.documentType,
             })
-            console.log("[v0] OCR successful for document:", doc.id, "Text length:", ocrData.extractedText.length)
+            console.log("[AI-form-filler] OCR successful for document:", doc.id, "Text length:", ocrData.extractedText.length)
           } else {
-            console.log("[v0] OCR returned empty text for document:", doc.id)
+            console.log("[AI-form-filler] OCR returned empty text for document:", doc.id)
           }
         } else {
-          console.log("[v0] OCR failed for document:", doc.id)
+          console.log("[AI-form-filler] OCR failed for document:", doc.id)
         }
 
         setProgress(20 + (i + 1) * (40 / documents.length))
@@ -158,7 +158,7 @@ export default function UploadDocumentsPage() {
         )
       }
 
-      console.log("[v0] Documents with text:", documentsWithText.length)
+      console.log("[AI-form-filler] Documents with text:", documentsWithText.length)
 
       setProcessingStage("Extracting and auto-filling data with AI (>90% accuracy)...")
       setProgress(60)
@@ -173,26 +173,26 @@ export default function UploadDocumentsPage() {
         }),
       })
 
-      console.log("[v0] Extraction response status:", extractResponse.status)
+      console.log("[AI-form-filler] Extraction response status:", extractResponse.status)
 
       let errorData
       try {
         errorData = await extractResponse.json()
       } catch (jsonError) {
-        console.error("[v0] Failed to parse extraction response as JSON:", jsonError)
-        console.error("[v0] Response status:", extractResponse.status)
-        console.error("[v0] Response headers:", Object.fromEntries(extractResponse.headers.entries()))
+        console.error("[AI-form-filler] Failed to parse extraction response as JSON:", jsonError)
+        console.error("[AI-form-filler] Response status:", extractResponse.status)
+        console.error("[AI-form-filler] Response headers:", Object.fromEntries(extractResponse.headers.entries()))
         throw new Error(`Server returned invalid response (status ${extractResponse.status})`)
       }
 
       if (!extractResponse.ok) {
-        console.error("[v0] Extraction API returned error:", errorData)
+        console.error("[AI-form-filler] Extraction API returned error:", errorData)
         throw new Error(errorData.error || errorData.details || `Extraction failed (${extractResponse.status})`)
       }
 
       const { extractedData, performance } = errorData
 
-      console.log("[v0] Multi-document extraction complete:", {
+      console.log("[AI-form-filler] Multi-document extraction complete:", {
         fieldCount: Object.keys(extractedData || {}).length,
         performance,
       })
@@ -224,7 +224,7 @@ export default function UploadDocumentsPage() {
         router.push(`/forms/${formType}/review/${submissionId}`)
       }, 800)
     } catch (error) {
-      console.error("[v0] Processing error:", error)
+      console.error("[AI-form-filler] Processing error:", error)
       const errorMessage = error instanceof Error ? error.message : "Error processing documents. Please try again."
       setProcessingStage(`Error: ${errorMessage}`)
       setProcessing(false)

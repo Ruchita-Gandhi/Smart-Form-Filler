@@ -112,11 +112,11 @@ Return valid JSON only with extracted fields. Omit fields that are not found in 
         }
       })
     } catch (parseError) {
-      console.error("[v0] JSON parse error:", parseError)
+      console.error("[AI-form-filler] JSON parse error:", parseError)
       extractedData = {}
     }
 
-    console.log("[v0] Extracted data:", extractedData)
+    console.log("[AI-form-filler] Extracted data:", extractedData)
 
     return NextResponse.json({
       success: true,
@@ -124,7 +124,7 @@ Return valid JSON only with extracted fields. Omit fields that are not found in 
       accuracy: Object.keys(extractedData).length > 5 ? "high" : "medium",
     })
   } catch (error) {
-    console.error("[v0] Data extraction error:", error)
+    console.error("[AI-form-filler] Data extraction error:", error)
     return NextResponse.json({ error: "Data extraction failed" }, { status: 500 })
   }
 }

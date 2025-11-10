@@ -46,7 +46,7 @@ export default function PreviewPage() {
       const submission = await response.json()
       setFormData(submission.form_data || {})
     } catch (err) {
-      console.error("[v0] Fetch error:", err)
+      console.error("[AI-form-filler] Fetch error:", err)
     } finally {
       setLoading(false)
     }
@@ -63,7 +63,7 @@ export default function PreviewPage() {
       const docs = await response.json()
       setDocuments(docs)
     } catch (err) {
-      console.error("[v0] Documents fetch error:", err)
+      console.error("[AI-form-filler] Documents fetch error:", err)
       setDocumentsError(true)
     }
   }
@@ -88,7 +88,7 @@ export default function PreviewPage() {
 
       router.push(`/forms/${formType}/success/${submissionId}`)
     } catch (err) {
-      console.error("[v0] Submit error:", err)
+      console.error("[AI-form-filler] Submit error:", err)
     } finally {
       setSubmitting(false)
     }

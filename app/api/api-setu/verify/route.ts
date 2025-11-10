@@ -81,7 +81,7 @@ export async function POST(request: NextRequest) {
       { status: 400 }
     )
   } catch (error) {
-    console.error("[v0] API Setu verification error:", error)
+    console.error("[AI-form-filler] API Setu verification error:", error)
     return NextResponse.json(
       {
         error: "Verification failed",

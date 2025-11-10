@@ -30,11 +30,11 @@ export default function SignUpPage() {
       return
     }
 
-    console.log("[v0] Attempting sign up for:", email)
+    console.log("[AI-form-filler] Attempting sign up for:", email)
 
     try {
       const supabase = createClient()
-      console.log("[v0] Supabase client created")
+      console.log("[AI-form-filler] Supabase client created")
 
       const { data, error: signUpError } = await supabase.auth.signUp({
         email,
@@ -47,17 +47,17 @@ export default function SignUpPage() {
         },
       })
 
-      console.log("[v0] Sign up response:", { data, error: signUpError })
+      console.log("[AI-form-filler] Sign up response:", { data, error: signUpError })
 
       if (signUpError) {
-        console.error("[v0] Sign up error:", signUpError)
+        console.error("[AI-form-filler] Sign up error:", signUpError)
         throw signUpError
       }
 
-      console.log("[v0] Sign up successful")
+      console.log("[AI-form-filler] Sign up successful")
       router.push("/auth/sign-up-success")
     } catch (error: unknown) {
-      console.error("[v0] Sign up error:", error)
+      console.error("[AI-form-filler] Sign up error:", error)
       setError(error instanceof Error ? error.message : "An error occurred during sign up")
     } finally {
       setIsLoading(false)

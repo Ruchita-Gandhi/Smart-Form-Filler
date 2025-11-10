@@ -275,7 +275,7 @@ function normalizeExtractedData(data: any): any {
 }
 
 export async function POST(request: NextRequest) {
-  console.log("[v0] === Multi-document extraction API called ===")
+  console.log("[AI-form-filler] === Multi-document extraction API called ===")
 
   try {
     const supabase = await createClient()
@@ -286,22 +286,22 @@ export async function POST(request: NextRequest) {
     } = await supabase.auth.getUser()
 
     if (authError || !user) {
-      console.error("[v0] Authentication failed:", authError)
+      console.error("[AI-form-filler] Authentication failed:", authError)
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    console.log("[v0] User authenticated:", user.email)
+    console.log("[AI-form-filler] User authenticated:", user.email)
 
     const body = await request.json()
     const { documents, formType } = body
 
-    console.log("[v0] Extraction request:", {
+    console.log("[AI-form-filler] Extraction request:", {
       documentCount: documents?.length || 0,
       formType,
     })
 
     if (!documents || !Array.isArray(documents) || documents.length === 0) {
-      console.error("[v0] Invalid documents array")
+      console.error("[AI-form-filler] Invalid documents array")
       return NextResponse.json({ error: "No documents provided" }, { status: 400 })
     }
 
@@ -309,10 +309,10 @@ export async function POST(request: NextRequest) {
       (doc: { extractedText?: string }) => doc.extractedText && doc.extractedText.trim().length > 0,
     )
 
-    console.log("[v0] Valid documents:", validDocuments.length)
+    console.log("[AI-form-filler] Valid documents:", validDocuments.length)
 
     if (validDocuments.length === 0) {
-      console.error("[v0] No valid text in documents")
+      console.error("[AI-form-filler] No valid text in documents")
       return NextResponse.json(
         { error: "No readable text found in uploaded documents. Please upload clear, readable documents." },
         { status: 400 },
@@ -331,8 +331,8 @@ export async function POST(request: NextRequest) {
       )
       .join("\n\n")
 
-    console.log("[v0] Processing combined text length:", combinedText.length)
-    console.log("[v0] Using form type:", formType)
+    console.log("[AI-form-filler] Processing combined text length:", combinedText.length)
+    console.log("[AI-form-filler] Using form type:", formType)
 
     const { text } = await generateText({
       model: groq("llama-3.3-70b-versatile"),
@@ -359,7 +359,7 @@ ${schemaDescription}`,
       temperature: 0.1,
     })
 
-    console.log("[v0] Raw AI response:", text.substring(0, 200))
+    console.log("[AI-form-filler] Raw AI response:", text.substring(0, 200))
 
     let extractedData
     try {
@@ -373,8 +373,8 @@ ${schemaDescription}`,
       // Validate with Zod schema
       extractedData = schema.parse(normalizedData)
     } catch (parseError) {
-      console.error("[v0] Failed to parse AI response:", parseError)
-      console.error("[v0] Response text:", text)
+      console.error("[AI-form-filler] Failed to parse AI response:", parseError)
+      console.error("[AI-form-filler] Response text:", text)
       throw new Error("Failed to parse extraction results. Please try again with clearer documents.")
     }
 
@@ -383,7 +383,7 @@ ${schemaDescription}`,
     const timePerDocument = totalTime / validDocuments.length
     const meetsTarget = timePerDocument <= 5
 
-    console.log("[v0] Extraction complete:", {
+    console.log("[AI-form-filler] Extraction complete:", {
       fieldsExtracted: Object.keys(extractedData).length,
       documentsProcessed: validDocuments.length,
       totalTime: `${totalTime.toFixed(2)}s`,
@@ -396,7 +396,7 @@ ${schemaDescription}`,
     )
 
     if (Object.keys(cleanedData).length === 0) {
-      console.error("[v0] No data extracted")
+      console.error("[AI-form-filler] No data extracted")
       return NextResponse.json(
         {
           error:
@@ -418,11 +418,11 @@ ${schemaDescription}`,
       },
     })
   } catch (error) {
-    console.error("[v0] ===== EXTRACTION ERROR =====")
-    console.error("[v0] Error:", error)
-    console.error("[v0] Error type:", error?.constructor?.name)
-    console.error("[v0] Error message:", error instanceof Error ? error.message : String(error))
-    console.error("[v0] Stack trace:", error instanceof Error ? error.stack : "No stack")
+    console.error("[AI-form-filler] ===== EXTRACTION ERROR =====")
+    console.error("[AI-form-filler] Error:", error)
+    console.error("[AI-form-filler] Error type:", error?.constructor?.name)
+    console.error("[AI-form-filler] Error message:", error instanceof Error ? error.message : String(error))
+    console.error("[AI-form-filler] Stack trace:", error instanceof Error ? error.stack : "No stack")
 
     return NextResponse.json(
       {

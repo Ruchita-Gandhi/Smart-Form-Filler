@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
       },
     })
   } catch (error) {
-    console.error("[v0] PDF generation error:", error)
+    console.error("[AI-form-filler] PDF generation error:", error)
     return NextResponse.json(
       {
         error: "Failed to generate PDF",

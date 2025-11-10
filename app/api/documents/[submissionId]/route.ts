@@ -37,13 +37,13 @@ export async function GET(
       .order("created_at", { ascending: true })
 
     if (error) {
-      console.error("[v0] Database error:", error)
+      console.error("[AI-form-filler] Database error:", error)
       return NextResponse.json({ error: "Failed to fetch documents" }, { status: 500 })
     }
 
     return NextResponse.json(documents || [])
   } catch (error) {
-    console.error("[v0] Fetch error:", error)
+    console.error("[AI-form-filler] Fetch error:", error)
     return NextResponse.json({ error: "Failed to fetch documents" }, { status: 500 })
   }
 }

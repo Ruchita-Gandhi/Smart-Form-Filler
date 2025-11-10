@@ -3,6 +3,7 @@
 ## Prerequisites
 
 Before deploying, ensure you have:
+
 - Vercel account
 - Supabase account
 - OCR.space API key
@@ -11,6 +12,7 @@ Before deploying, ensure you have:
 ## Environment Variables Required
 
 ### Supabase (Already configured in this project)
+
 \`\`\`bash
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
@@ -19,21 +21,25 @@ NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL=http://localhost:3000
 \`\`\`
 
 ### Vercel Blob (Already configured)
+
 \`\`\`bash
 BLOB_READ_WRITE_TOKEN=your_blob_token
 \`\`\`
 
 ### OCR API (Already configured)
+
 \`\`\`bash
 OCR_SPACE_API_KEY=your_ocr_api_key
 \`\`\`
 
 ### AI SDK (Optional - uses Vercel AI Gateway by default)
+
 \`\`\`bash
 API_KEY_GROQ_API_KEY=your_groq_key (if using Groq)
 \`\`\`
 
 ### DigiLocker (For production integration)
+
 \`\`\`bash
 DIGILOCKER_CLIENT_ID=your_client_id
 DIGILOCKER_CLIENT_SECRET=your_client_secret
@@ -45,31 +51,37 @@ DIGILOCKER_REDIRECT_URI=https://your-domain.com/api/digilocker/callback
 ### 1. Deploy to Vercel
 
 \`\`\`bash
+
 # Connect to GitHub and deploy
+
 vercel --prod
 \`\`\`
 
-Or use the "Publish" button in the v0 interface.
+Or use the "Publish" button in the AI-form-filler interface.
 
 ### 2. Set Up Database
 
 The SQL scripts in the `/scripts` folder will create:
+
 - `users` table (synced with Supabase auth)
 - `form_submissions` table with RLS policies
 - Proper indexes and constraints
 
 Run the scripts in order:
+
 1. `001_create_users_and_forms.sql`
 
 ### 3. Configure Integrations
 
 #### Supabase
-- Already connected via v0
+
+- Already connected via AI-form-filler
 - RLS policies automatically applied
 - Email auth enabled
 
 #### Vercel Blob
-- Already connected via v0
+
+- Already connected via AI-form-filler
 - Automatic file upload handling
 
 ### 4. Test the Application
@@ -84,6 +96,7 @@ Run the scripts in order:
 ### 5. Monitor Performance
 
 Check the performance metrics in the application:
+
 - Extraction time per document
 - OCR success rate
 - AI accuracy
@@ -109,6 +122,7 @@ Check the performance metrics in the application:
 ## Scaling Considerations
 
 ### For High Traffic
+
 - Enable Supabase connection pooling
 - Use Vercel Edge Functions for API routes
 - Implement rate limiting
@@ -116,6 +130,7 @@ Check the performance metrics in the application:
 - Use CDN for static assets
 
 ### For Enterprise
+
 - Dedicated Supabase instance
 - Custom OCR server for sensitive documents
 - On-premise DigiLocker integration
@@ -137,6 +152,7 @@ Check the performance metrics in the application:
 ## Support
 
 For issues or questions:
+
 - Check README.md for setup instructions
 - Review ARCHITECTURE.md for technical details
 - See PERFORMANCE.md for optimization tips
@@ -146,6 +162,7 @@ For issues or questions:
 ## Maintenance
 
 ### Regular Tasks
+
 - Update dependencies monthly
 - Review and rotate API keys quarterly
 - Monitor database size and optimize
@@ -154,6 +171,7 @@ For issues or questions:
 - Test backup and restore procedures
 
 ### Monitoring
+
 - Set up alerts for API failures
 - Track extraction accuracy rates
 - Monitor response times

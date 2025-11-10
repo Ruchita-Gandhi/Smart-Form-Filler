@@ -98,7 +98,7 @@ export function DocumentUploader({
       onUploadComplete?.(uploadedFileData)
     } catch (err) {
       setError("Upload failed. Please try again.")
-      console.error("[v0] Upload error:", err)
+      console.error("[AI-form-filler] Upload error:", err)
     } finally {
       setUploading(false)
     }

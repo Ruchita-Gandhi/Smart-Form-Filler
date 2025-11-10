@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
       .single()
 
     if (dbError) {
-      console.error("[v0] Database error:", dbError)
+      console.error("[AI-form-filler] Database error:", dbError)
       return NextResponse.json({ error: "Failed to save document" }, { status: 500 })
     }
 
@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
       documentType,
     })
   } catch (error) {
-    console.error("[v0] Upload error:", error)
+    console.error("[AI-form-filler] Upload error:", error)
     return NextResponse.json({ error: "Upload failed" }, { status: 500 })
   }
 }

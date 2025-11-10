@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
     const ocrResult = await ocrResponse.json()
 
     if (ocrResult.IsErroredOnProcessing) {
-      console.error("[v0] OCR error:", ocrResult.ErrorMessage)
+      console.error("[AI-form-filler] OCR error:", ocrResult.ErrorMessage)
       return NextResponse.json(
         {
           error: "OCR processing failed",
@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
 
     const extractedText = ocrResult.ParsedResults?.[0]?.ParsedText || ""
 
-    console.log("[v0] OCR completed. Text length:", extractedText.length)
+    console.log("[AI-form-filler] OCR completed. Text length:", extractedText.length)
 
     // Update document with extracted text
     if (documentId) {
@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
       confidence: ocrResult.ParsedResults?.[0]?.FileParseExitCode === 1 ? "high" : "medium",
     })
   } catch (error) {
-    console.error("[v0] OCR error:", error)
+    console.error("[AI-form-filler] OCR error:", error)
     return NextResponse.json({ error: "OCR failed" }, { status: 500 })
   }
 }

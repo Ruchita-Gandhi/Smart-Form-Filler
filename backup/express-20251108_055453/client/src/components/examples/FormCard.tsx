@@ -1,15 +1,3 @@
-import FormCard from '../FormCard';
-
-export default function FormCardExample() {
-  return (
-    <div className="p-6 max-w-md mx-auto">
-      <FormCard
-        formType="passport"
-        title="Passport Application"
-        description="Apply for a new passport or renew existing passport"
-        estimatedTime="15-20 minutes"
-        onFillForm={() => console.log('Fill passport form')}
-      />
-    </div>
-  );
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:f6ac3334bde7b1f0ff78f62614934b55b82592c777ac3000589fd0146ca0c2f4
+size 416

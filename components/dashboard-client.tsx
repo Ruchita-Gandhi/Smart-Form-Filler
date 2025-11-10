@@ -39,7 +39,7 @@ export function DashboardClient({ user, submissions, handleSignOut }: DashboardC
 
       router.refresh()
     } catch (error) {
-      console.error("[v0] Delete error:", error)
+      console.error("[AI-form-filler] Delete error:", error)
       alert(t.deleteFailed || "Failed to delete form. Please try again.")
     } finally {
       setDeletingId(null)

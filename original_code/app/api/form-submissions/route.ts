@@ -28,13 +28,13 @@ export async function POST(request: NextRequest) {
       .single()
 
     if (error) {
-      console.error("[v0] Database error:", error)
+      console.error("[AI-form-filler] Database error:", error)
       return NextResponse.json({ error: "Failed to create submission" }, { status: 500 })
     }
 
     return NextResponse.json(submission)
   } catch (error) {
-    console.error("[v0] Error:", error)
+    console.error("[AI-form-filler] Error:", error)
     return NextResponse.json({ error: "Failed to create submission" }, { status: 500 })
   }
 }

@@ -57,7 +57,7 @@ export default function ReviewExtractedDataPage() {
       setFormData(submission.extracted_data || {})
     } catch (err) {
       setError("Failed to load extracted data")
-      console.error("[v0] Fetch error:", err)
+      console.error("[AI-form-filler] Fetch error:", err)
     } finally {
       setLoading(false)
     }
@@ -88,7 +88,7 @@ export default function ReviewExtractedDataPage() {
       router.push(`/forms/${formType}/fill/${submissionId}`)
     } catch (err) {
       setError("Failed to save data")
-      console.error("[v0] Save error:", err)
+      console.error("[AI-form-filler] Save error:", err)
     } finally {
       setSubmitting(false)
     }

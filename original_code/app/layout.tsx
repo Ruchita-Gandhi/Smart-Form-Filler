@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "SmartFormFiller - AI Form Assistant",
   description: "AI-Powered Form Filling Assistant for Indian Government Services",
-    generator: 'v0.app'
+    generator: 'AI-form-filler.app'
 }
 
 export default function RootLayout({

@@ -1,5 +1,5 @@
 {
-  "name": "my-v0-project",
+  "name": "my-AI-form-filler-project",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -67,7 +67,7 @@
     "zod": "3.25.76"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.9",
+    "@tailwindcss/postcss": "^4.1.17",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",

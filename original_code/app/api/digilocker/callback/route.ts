@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
     const tokenData = await tokenResponse.json()
 
     if (!tokenResponse.ok) {
-      console.error("[v0] DigiLocker token error:", tokenData)
+      console.error("[AI-form-filler] DigiLocker token error:", tokenData)
       return NextResponse.redirect(`${request.nextUrl.origin}/forms/select?error=digilocker_token`)
     }
 
@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
 
     return response
   } catch (error) {
-    console.error("[v0] DigiLocker callback error:", error)
+    console.error("[AI-form-filler] DigiLocker callback error:", error)
     return NextResponse.redirect(`${request.nextUrl.origin}/forms/select?error=digilocker_failed`)
   }
 }

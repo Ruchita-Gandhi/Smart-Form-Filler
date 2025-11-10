@@ -348,7 +348,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
       },
     })
   } catch (error) {
-    console.error("[v0] PDF generation error:", error)
+    console.error("[AI-form-filler] PDF generation error:", error)
     return NextResponse.json({ error: "PDF generation failed" }, { status: 500 })
   }
 }

@@ -1,12 +1,3 @@
-import RegisterForm from '../RegisterForm';
-
-export default function RegisterFormExample() {
-  return (
-    <div className="flex items-center justify-center min-h-screen p-4">
-      <RegisterForm
-        onRegister={(data) => console.log('Registered:', data)}
-        onSwitchToLogin={() => console.log('Switch to login')}
-      />
-    </div>
-  );
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:48e4d9133e10d2730c95871508fcd009045d64faef56f668dfc13e658f4d5f34
+size 350

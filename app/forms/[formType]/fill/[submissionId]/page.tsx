@@ -40,7 +40,7 @@ export default function FillFormPage() {
       const submission = await response.json()
       setFormData(submission.form_data || submission.extracted_data || {})
     } catch (err) {
-      console.error("[v0] Fetch error:", err)
+      console.error("[AI-form-filler] Fetch error:", err)
     } finally {
       setLoading(false)
     }
@@ -74,7 +74,7 @@ export default function FillFormPage() {
 
       router.push(`/forms/${formType}/success/${submissionId}`)
     } catch (err) {
-      console.error("[v0] Submit error:", err)
+      console.error("[AI-form-filler] Submit error:", err)
     } finally {
       setSubmitting(false)
     }
@@ -97,7 +97,7 @@ export default function FillFormPage() {
       setShowDraftSaved(true)
       setTimeout(() => setShowDraftSaved(false), 3000)
     } catch (err) {
-      console.error("[v0] Save draft error:", err)
+      console.error("[AI-form-filler] Save draft error:", err)
     } finally {
       setSubmitting(false)
     }

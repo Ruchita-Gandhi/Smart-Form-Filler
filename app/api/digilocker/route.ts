@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
       },
     })
   } catch (error) {
-    console.error("[v0] DigiLocker error:", error)
+    console.error("[AI-form-filler] DigiLocker error:", error)
     return NextResponse.json({ error: "DigiLocker has been deprecated" }, { status: 500 })
   }
 }
